@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Tutor Pro — ИИ-репетитор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Шапка */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: #7c3aed;
+        }
+        .header a {
+            color: #fff;
+            text-decoration: none;
+            background: #7c3aed;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .header a:hover {
+            background: #6d28d9;
+        }
+
+        /* Главный */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 0;
+        }
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+        .hero h1 span {
+            color: #7c3aed;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #a1a1aa;
+            margin: 24px 0 32px;
+            max-width: 480px;
+        }
+        .hero a {
+            background: #7c3aed;
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .hero a:hover {
+            background: #6d28d9;
+            transform: scale(1.02);
+        }
+
+        .hero-image {
+            background: linear-gradient(145deg, #1a1a2e, #0a0a0f);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.06);
+            font-size: 80px;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* Возможности */
+        .features {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .features h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .feature-card {
+            background: #12121a;
+            padding: 32px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .feature-card:hover {
+            border-color: #7c3aed;
+            transform: translateY(-4px);
+        }
+        .feature-card .icon {
+            font-size: 40px;
+        }
+        .feature-card h3 {
+            margin: 16px 0 8px;
+            font-size: 20px;
+        }
+        .feature-card p {
+            color: #a1a1aa;
+            font-size: 14px;
+        }
+
+        /* Тарифы */
+        .pricing {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .pricing h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .plan {
+            background: #12121a;
+            padding: 40px 24px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .plan:hover {
+            border-color: #7c3aed;
+        }
+        .plan.popular {
+            border-color: #7c3aed;
+            background: #1a1a2e;
+        }
+        .plan .price {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 16px 0;
+        }
+        .plan .price span {
+            font-size: 18px;
+            font-weight: 400;
+            color: #a1a1aa;
+        }
+        .plan ul {
+            list-style: none;
+            margin: 24px 0;
+            text-align: left;
+        }
+        .plan ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .plan a {
+            display: block;
+            background: #7c3aed;
+            color: #fff;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .plan a:hover {
+            background: #6d28d9;
+        }
+
+        /* График */
+        .stats {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .stats h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .chart {
+            background: #12121a;
+            padding: 40px;
+            border-radius: 24px;
+            margin-top: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .bar-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            gap: 16px;
+        }
+        .bar {
+            flex: 1;
+            background: #7c3aed;
+            border-radius: 8px 8px 0 0;
+            transition: 0.3s;
+            min-height: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .bar:nth-child(1) { height: 70%; }
+        .bar:nth-child(2) { height: 85%; }
+        .bar:nth-child(3) { height: 60%; }
+        .bar:nth-child(4) { height: 95%; }
+        .bar:nth-child(5) { height: 75%; }
+        .bar-label {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #a1a1aa;
+        }
+
+        /* Отзывы */
+        .testimonials {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .testimonials h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 48px;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .testimonial {
+            background: #12121a;
+            padding: 32px 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: left;
+        }
+        .testimonial .name {
+            font-weight: 700;
+            margin-top: 16px;
+        }
+        .testimonial .role {
+            color: #a1a1aa;
+            font-size: 14px;
+        }
+        .testimonial .stars {
+            color: #fbbf24;
+        }
+
+        /* Футер */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            color: #a1a1aa;
+            font-size: 14px;
+        }
+
+        /* Адаптив */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero p {
+                margin: 24px auto 32px;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Шапка -->
+        <header class="header">
+            <div class="logo">AI <span>Tutor Pro</span></div>
+            <a href="https://t.me/AiMathHelper_bot" target="_blank">Попробовать</a>
+        </header>
+
+        <!-- Главный экран -->
+        <section class="hero">
+            <div>
+                <h1>Твой путь к <span>100 баллам</span></h1>
+                <p>ИИ-репетитор, который объясняет как человек, мотивирует как друг и помогает сдать ОГЭ и ЕГЭ на отлично.</p>
+                <a href="https://t.me/AiMathHelper_bot" target="_blank">🚀 Начать бесплатно</a>
+            </div>
+            <div class="hero-image">
+                🧠 AI Tutor Pro
+            </div>
+        </section>
+
+        <!-- Возможности -->
+        <section class="features">
+            <h2>Что умеет AI Tutor Pro</h2>
+            <p style="color: #a1a1aa; max-width: 600px; margin: 0 auto;">Всё, что нужно для подготовки к экзаменам, в одном Telegram-боте.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">📚</div>
+                    <h3>11 предметов</h3>
+                    <p>Математика, русский, физика, химия и все школьные предметы.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🧠</div>
+                    <h3>ИИ-объяснения</h3>
+                    <p>Объясняет по шагам, как лучший учитель, а не просто даёт ответ.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📸</div>
+                    <h3>Фото задач</h3>
+                    <p>Сфотографируй задачу — бот решит и объяснит решение.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📊</div>
+                    <h3>Статистика</h3>
+                    <p>Отслеживай прогресс, XP, серии и достижения.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Тарифы -->
+        <section class="pricing">
+            <h2>Выбери свой тариф</h2>
+            <p style="color: #a1a1aa; max-width: 600px; margin: 0 auto;">Начни с бесплатной недели, а потом выбери план, который подходит тебе.</p>
+            <div class="pricing-grid">
+                <div class="plan">
+                    <h3>Базовый</h3>
+                    <div class="price">$9 <span>/мес</span></div>
+                    <ul>
+                        <li>5 заданий в день</li>
+                        <li>2 предмета</li>
+                        <li>Текстовая поддержка</li>
+                    </ul>
+                    <a href="https://t.me/AiMathHelper_bot" target="_blank">Начать</a>
+                </div>
+                <div class="plan popular">
+                    <h3>⭐ Премиум</h3>
+                    <div class="price">$29 <span>/мес</span></div>
+                    <ul>
+                        <li>Безлимитные задания</li>
+                        <li>11 предметов</li>
+                        <li>Банк ФИПИ</li>
+                        <li>Статистика и достижения</li>
+                        <li>Фото задач</li>
+                    </ul>
+                    <a href="https://t.me/AiMathHelper_bot" target="_blank">Попробовать</a>
+                </div>
+                <div class="plan">
+                    <h3>VIP</h3>
+                    <div class="price">$49 <span>/мес</span></div>
+                    <ul>
+                        <li>Всё из Премиум</li>
+                        <li>Индивидуальный план</li>
+                        <li>Закрытый чат с репетитором</li>
+                    </ul>
+                    <a href="https://t.me/AiMathHelper_bot" target="_blank">Начать</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Результаты -->
+        <section class="stats">
+            <h2>Результаты учеников</h2>
+            <p style="color: #a1a1aa; max-width: 600px; margin: 0 auto;">Наши ученики показывают стабильный рост и достигают высоких баллов.</p>
+            <div class="chart">
+                <div class="bar-container">
+                    <div><div class="bar">70%</div><div class="bar-label">До бота</div></div>
+                    <div><div class="bar">85%</div><div class="bar-label">Через 1 месяц</div></div>
+                    <div><div class="bar">90%</div><div class="bar-label">Через 2 месяца</div></div>
+                    <div><div class="bar">95%</div><div class="bar-label">Через 3 месяца</div></div>
+                    <div><div class="bar">100%</div><div class="bar-label">Цель</div></div>
+                </div>
+                <p style="margin-top: 24px; color: #a1a1aa;">Средний рост успеваемости за 3 месяца занятий с AI Tutor Pro</p>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section class="testimonials">
+            <h2>Что говорят ученики</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>«AI Tutor Pro помог мне подтянуть математику с 3 до 5 за 2 месяца. Объясняет лучше, чем школьный учитель!»</p>
+                    <div class="name">— Амир, 9 класс</div>
+                    <div class="role">г. Назрань</div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>«Готовилась к ЕГЭ по русскому. Бот давал задания из ФИПИ и проверял ответы. Результат — 94 балла. Спасибо!»</p>
+                    <div class="name">— Алина, 11 класс</div>
+                    <div class="role">г. Москва</div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>«Раньше не мог понять физику. А тут всё по шагам, с примерами. Очень удобно, что можно спросить в любое время.»</p>
+                    <div class="name">— Магомед, 10 класс</div>
+                    <div class="role">г. Магас</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <p>© 2026 AI Tutor Pro. Сделано с ❤️ Исмаилом.</p>
+            <p><a href="https://t.me/AiMathHelper_bot" target="_blank" style="color: #7c3aed; text-decoration: none;">Наш бот в Telegram</a></p>
+        </footer>
+
+    </div>
+
+</body>
+  </html>
